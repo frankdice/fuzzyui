@@ -7,7 +7,7 @@ setuptools.setup(
     name="fuzzyui",
     version="0.1.0a1",
     author="Frank Dice",
-    author_email="frank@babyvelociraptor.com",
+    author_email="frank.dice@mlb.com",
     description="Command-line fuzzy finder for CLI applications",
     long_description=long_description,
     long_description_content_type="text/markdown",
