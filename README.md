@@ -18,3 +18,8 @@ print(found)
 ```
 
 It also accepts text input within the screen takeover, updating the items list and probability order automatically. Hit enter, and it'll return the selected value.
+
+
+
+### Build Command Reference
+`python3 setup.py sdist bdist_wheel`

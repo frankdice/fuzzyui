@@ -36,15 +36,36 @@ class fuzzyui:
         if item[1] >= 30 or input_string == "":
           _displayed_items += 1
           if index == idx:
-            self.echo(self.term.on_grey30("> {0}".format(item[0])))
+            self.echo(self.term.red_on_grey30("> "))
+            self._highlight_input_characters(item[0], input_string, is_idx=True)
           else:
-            self.echo(self.term.on_grey30(" ") + " {0}".format(item[0]))
+            self.echo(self.term.snow_on_grey30(" ") + " ") 
+            self._highlight_input_characters(item[0], input_string)
           self.echo(self.term.move_x(0) + self.term.move_up(1))
       
       #Count of how many displayed vs total passed in
       self.echo(self.term.move_xy(0, self.term.height - 2) + "{0}/{1}".format(_displayed_items, len(self.items)))
       #Bottom display prompt
       self.echo(self.term.move_xy(0, self.term.height - 1) + "> {0}\u2588".format(input_string))
+
+  #Make the letters that match input_string stand out a bit more
+  def _highlight_input_characters(self, item, input_string, is_idx=False):
+    if input_string:
+      pattern = re.compile(r'[{0}]'.format(input_string))
+      for elem in item:
+        if is_idx: #Index pattern match
+          if pattern.match(elem):
+            self.echo(self.term.snow_on_grey30("{0}".format(elem)))
+          else:
+            self.echo(self.term.grey60_on_grey30("{0}".format(elem)))
+        else: #Non-index pattern match
+          if pattern.match(elem):
+            self.echo(self.term.grey60("{0}".format(elem)))
+          else:
+            self.echo("{0}".format(elem))
+    else: #No input_string
+      self.echo("{0}".format(item))
+
 
 
   def find(self, items, searchtext=""):
