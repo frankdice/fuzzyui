@@ -64,7 +64,10 @@ class fuzzyui:
           else:
             self.echo("{0}".format(elem))
     else: #No input_string
-      self.echo("{0}".format(item))
+      if is_idx:
+        self.echo(self.term.on_grey30("{0}".format(item)))
+      else:
+        self.echo("{0}".format(item))
 
 
 
